@@ -14,7 +14,8 @@ import { Character, CharacterSchema } from './entities/character.entity';
         schema: CharacterSchema
       }
     ])
-  ]
+  ],
+  exports: [ MongooseModule ]
 })
 
 export class CharactersModule {}

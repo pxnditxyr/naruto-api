@@ -41,6 +41,11 @@ http://localhost:3000
 docker compose up -d
 ```
 
+7. Rebuild Database with seed
+```bash
+http://localhost:3000/api/seed
+```
+
 ## Contributors
 
 - Pxndxs
