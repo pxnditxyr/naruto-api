@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
+import { PaginationQueryDto } from 'src/common/dto/pagination.dto';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
 import { Character } from './entities/character.entity';
@@ -28,8 +29,15 @@ export class CharactersService {
     }
   }
 
-  async findAll() {
+  async findAll ( paginationQueryDto : PaginationQueryDto) {
+
+    const { limit = 10, offset = 0 } = paginationQueryDto
+
     const characters = this.characterModel.find()
+      .limit( limit )
+      .skip( offset )
+      .sort( 'top' )
+      .select( '-__v -_id' )
     return characters
   }
 
