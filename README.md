@@ -36,6 +36,11 @@ npm run start:dev
 http://localhost:3000
 ```
 
+6. Up Database
+```bash
+docker compose up -d
+```
+
 ## Contributors
 
 - Pxndxs

@@ -1,0 +1,31 @@
+GET http://Gocalhost:3000
+
+GET http://localhost:3000/api/characters
+
+POST http://localhost:3000/api/characters
+Content-Type: application/json
+
+{
+  "name": "Naruto",
+  "surname": "Uzumaki",
+  "top": 1,
+  "jutsus": 20,
+  "village": "Konoha"
+}
+
+GET http://localhost:3000/api/characters/21
+
+GET http://localhost:3000/api/characters/64656d0621be64ac44468cab
+
+PATCH http://localhost:3000/api/characters/2
+Content-Type: application/json
+
+{
+  "name": "Sasuke",
+  "surname": "Uchiha",
+  "top": 1,
+  "jutsus": 25,
+  "village": "Konoha"
+}
+
+DELETE http://localhost:3000/api/characters/6465461d8d655d4b2af213c7
