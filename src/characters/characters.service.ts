@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { PaginationQueryDto } from 'src/common/dto/pagination.dto';
@@ -9,10 +10,16 @@ import { Character } from './entities/character.entity';
 @Injectable()
 export class CharactersService {
 
+  private defaultLimit : number
+
   constructor (
     @InjectModel( Character.name )
-    private readonly characterModel : Model<Character>
-  ) {}
+    private readonly characterModel : Model<Character>,
+
+    private readonly configService : ConfigService
+  ) {
+    this.defaultLimit = this.configService.get<number>( 'defaultLimit', { infer: true } )
+  }
 
   async create( createCharacterDto: CreateCharacterDto ) {
     
@@ -30,8 +37,7 @@ export class CharactersService {
   }
 
   async findAll ( paginationQueryDto : PaginationQueryDto) {
-
-    const { limit = 10, offset = 0 } = paginationQueryDto
+    const { limit = this.defaultLimit, offset = 0 } = paginationQueryDto
 
     const characters = this.characterModel.find()
       .limit( limit )

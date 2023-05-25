@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  librobingoapp:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: libro-bingo-docker
+    container_name: librobingoapp
+    restart: always
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      PORT: ${PORT}
+      DEFAULT_LIMIT: ${DEFAULT_LIMIT}
+  db:
+    image: mongo:latest
+    container_name: mongo-libro-bingo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: libro-bingo

@@ -1,4 +1,4 @@
-GET http://Gocalhost:3000
+GET http://localhost:3000
 
 GET http://localhost:3000/api/characters
 
@@ -32,4 +32,4 @@ DELETE http://localhost:3000/api/characters/6465461d8d655d4b2af213c7
 
 GET http://localhost:3000/api/seed
 
-GET http://localhost:3000/api/characters?limit=5&offset=2
+GET http://localhost:3000/api/characters?limit=5

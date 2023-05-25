@@ -24,6 +24,12 @@ cd naruto-api
 npm install
 ```
 
+4. Rename .env.example to .env
+
+```bash
+mv .env.example .env
+```
+
 4. Run next command to start the development server.
 
 ```bash
@@ -44,6 +50,28 @@ docker compose up -d
 7. Rebuild Database with seed
 ```bash
 http://localhost:3000/api/seed
+```
+
+## Production Build
+
+1. Create file .env.production or clone .env.example
+
+```bash
+cp .env.example .env.prod
+```
+
+2. Change Environment Variables
+
+3. Create new image with command:
+
+```bash
+docker compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+
+4. Test in local
+```bash
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up
+
 ```
 
 ## Contributors
